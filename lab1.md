@@ -15,13 +15,21 @@ Let's familiarize ourselves with some common terms associated with operating sys
 [4]: https://www.ucl.ac.uk/isd/what-ssh-and-how-do-i-use-it
 
 ## Installing Visual Studio Code
-VSCode's integrated terminal allows for the user to switch between different shells with ease, unlike with the native terminal. In order to install VSCode, go to https://code.visualstudio.com/download and click the download link corresponding to your respective operating system. Afterwards, you should have a .zip link which you may unzip to install the program.
+VSCode's integrated terminal allows for the user to switch between different shells with ease, unlike with the native terminal. In order to install VSCode, go to [this download link][11] and click the download button corresponding to your respective operating system. Afterwards, you should have a .zip link which you may unzip to install the program.
+
+[11]: https://code.visualstudio.com/download
 
 ![VSCode download page](images/lab1-1.png)
 *Download page for VSCode*
 
 ## Remotely connnecting
-In this step, you will be getting remote access to the ieng6.ucsd.edu server running Linux. Open VSCode and its integrated terminal. Ensure that you are running Bash (Linux/macOS) or Git Bash (Windows). To login to the server, use the following command: ```ssh [username]@ieng6.ucsd.edu``` with your course-specific username replacing [username]. You may find your username at https://sdacs.ucsd.edu/~icc/index.php. Afterwards, you'll be prompted to enter your password. Enter it as you would normally do so, but be aware of the fact that no characters will show up. Once you've entered your password, you will be asked for confirmation to continue connecting–respond by typing 'yes'. You should be met with the following screen:
+In this step, you will be getting remote access to the ieng6.ucsd.edu server running Linux. Open VSCode and its integrated terminal. Ensure that you are running Bash (Linux/macOS) or Git Bash (Windows). To login to the server, use the following command: 
+
+```ssh [username]@ieng6.ucsd.edu``` 
+
+with your course-specific username replacing [username]. You may find your username at [this link][10]. Afterwards, you'll be prompted to enter your password. Enter it as you would normally do so, but be aware of the fact that no characters will show up. Once you've entered your password, you will be asked for confirmation to continue connecting–respond by typing 'yes'. You should be met with the following screen:
+
+[10]: https://sdacs.ucsd.edu/~icc/index.php
 
 ![Server connection screen](images/lab1-2.png)
 *A successful connection*
@@ -31,16 +39,17 @@ Congrats! You have successfully connected to the remote server!
 ## Running Commands
 
 Since Bash is the native shell for most Linux distributions, you should be able to use Bash commands on the remote server, which is a Linux system. We can use commands to navigate around the system, create directories/files, or retrieve information from files. Here's a list of several useful [Bash commands][5]:
+
 | Command | Usage                                                         |
 |---------|---------------------------------------------------------------|
-| pwd     | Prints the working directory you are in and its absolute path |
-| ls      | List contents of the directory                                |
-| cd      | Change the current working directory                          |
-| touch   | Create a file                                                 |
-| mkdir   | Create a directory                                            |
-| rmdir   | Delete a directory                                            |
-| less    | View contents of a text file                                  |
-| cat     | Read, create, or combine files                                |
+| ```pwd```     | Prints the working directory you are in and its absolute path |
+| ```ls```      | List contents of the directory                                |
+| ```cd```      | Change the current working directory                          |
+| ```touch```   | Create a file                                                 |
+| ```mkdir```   | Create a directory                                            |
+| ```rmdir```   | Delete a directory                                            |
+| ```less```    | View contents of a text file                                  |
+| ```cat```     | Read, create, or combine files                                |
 
 We can start by using ```pwd```, which shows us the directory we are currently in on the remote server.
 ![Using pwd](images/lab1-3.png)
