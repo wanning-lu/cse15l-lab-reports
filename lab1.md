@@ -40,16 +40,14 @@ Congrats! You have successfully connected to the remote server!
 
 Since Bash is the native shell for most Linux distributions, you should be able to use Bash commands on the remote server, which is a Linux system. We can use commands to navigate around the system, create directories/files, or retrieve information from files. Here's a list of several useful [Bash commands][5]:
 
-| Command | Usage                                                         |
-|---------|---------------------------------------------------------------|
-| ```pwd```     | Prints the working directory you are in and its absolute path |
-| ```ls```      | List contents of the directory                                |
-| ```cd```      | Change the current working directory                          |
-| ```touch```   | Create a file                                                 |
-| ```mkdir```   | Create a directory                                            |
-| ```rmdir```   | Delete a directory                                            |
-| ```less```    | View contents of a text file                                  |
-| ```cat```     | Read, create, or combine files                                |
+- ```pwd```: Prints the working directory you are in and its absolute path
+- ```ls```: List contents of the directory                                
+- ```cd```: Change the current working directory                          
+- ```touch```: Create a file                                   
+- ```mkdir```: Create a directory
+- ```rmdir```: Delete a directory
+- ```less```: View contents of a text file
+- ```cat```: Read, create, or combine files
 
 We can start by using ```pwd```, which shows us the directory we are currently in on the remote server.
 ![Using pwd](images/lab1-3.png)
