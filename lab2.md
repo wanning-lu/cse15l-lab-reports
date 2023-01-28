@@ -61,8 +61,71 @@ Even though we made multiple requests, the variable stored all of the queries we
 
 ![Number request](images/lab2-2.png)
 
-When we input integer value for our query, ```handleRequest(URI url)``` is called again with our URL. However, this time, the integer value is converted from an integer to a string and displayed on the page.
+When we input an integer value for our query, ```handleRequest(URI url)``` is called again with our URL. However, this time, the integer value is converted from an integer to a string and displayed on the page.
 
 ## Debugging
 
-Debugging is an inevitable step of programming. However, in Java, there is a testing framework called JUnit which you can use to continuously test your code with less effort. 
+Debugging is an inevitable step of programming. However, in Java, there is a testing framework called JUnit which you can use to continuously test your code with less effort. In this example, I'll be testing a buggy program called ArrayExamples with my tester program, ArrayTester.
+
+```java
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
+}
+```
+*The function that we are testing*
+
+To use JUnit, you must have the .jar files for Hamcrest and JUnit; afterwards, you can put them into a folder named "libs". Don't forget to configure your classpath (```Cmd + shift + p```) in VSCode so that it recognizes the JUnit statements!
+
+Here's an example test for our program:
+```java
+@Test 
+public void testReverseInPlace() {
+    int[] input1 = {3 2 3};
+    ArrayExamples.reverseInPlace(input1);
+    assertArrayEquals(new int[]{3 2 3}, input1);
+}
+```
+
+With how JUnit works, it's important to denote our tests with an ```@Test``` at the top of the test function. Next, the important piece is the function ```assertArrayEquals```. There are other versions of this function, but essentially, this allows us to manually check the outputs of our functions. Here, we're testing to ensure that ```reverseInPlace()``` actually overwrites the array with the elements in a reverse order. We can write another test to thoroughly test our outputs:
+```java
+@Test
+public void testReverseInPlaceTwo() {
+    int[] input1 = {1, 2, 3, 4};
+    ArrayExamples.reverseInPlace(input1);
+    assertArrayEquals(new int[]{4, 3, 2, 1}, input1);
+}
+```
+
+If we run the test with
+```
+javac -cp ../libs/junit-4.13.2.jar:../libs/hamcrest-2.2.jar:. *.java 
+java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTests
+```
+we'll get this result:
+
+![Tests passed and symptoms](images/lab2-3.png)
+
+We can see that while ```testReverseInPlace()``` passed, ```testReverseInPlaceTwo()``` did not. In ```testReverseInPlaceTwo()```, the outputs matched until the 2nd index; whereas we expected {4, 3, 2, 1}, the program outputted {4, 3, 3, [some number]}. When we take a closer look at ArrayExamples, we notice the bug that causes this issue:
+
+```java
+arr[i] = arr[arr.length - i - 1];
+```
+After the i reaches the middle of the array, it begins setting the ith position of the array with the *overwritten* elements from the beginning of the array, rather than from the original array. To fix this, we can create a new array that stores the original:
+```java
+int[] originalArray = new int[arr.length];
+for (int i = 0; i < arr.length; i++) {
+    originalArray[i] = arr[i];
+}
+```
+Notice that we use a deep copy, rather than a shallow copy, as a shallow copy would result in the same symptoms as before. Now, we change the line such that
+```java
+arr[i] = originalArray[arr.length - i - 1]
+```
+
+If we save this and run our tests again, we'll notice that all of our tests pass!
+![Tests passed](images/lab2-4.png)
+
+## What I learned
+The newest thing that I encountered these past weeks was coding and setting up my own web server. I already knew the basics of HTML/CSS/JS, but I didn't know that I could make and host a rudimentary server with Java. Additionally, I learned about the Server class (the one provided for lab). Since it was abstracted by the libraries that were used, the code was relatively easy to understand–for example, I understood how within the Server class, it took the output given by ```handleRequest()``` to display it on the webpage. However, the intracacies of how the server is actually started and ran is still a mystery to me, as I still don't know how HttpServer is implemented.
