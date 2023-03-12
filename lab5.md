@@ -45,7 +45,7 @@ Dissecting this command piece by piece:
 `ListExamples.java` is the file that contains the error.
 
 This will be our completed bash script:
-[Complete script](images/lab5-3.png)
+![Complete script](images/lab5-3.png)
 
 Here are the results after running it:
 
